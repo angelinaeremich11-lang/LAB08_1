@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 
 namespace LAB08_1
@@ -19,6 +20,11 @@ namespace LAB08_1
             {
                 return false;
             }
+            if (employee.IsEmployed)
+            {
+                Console.WriteLine($"Ошибка: {employee.Name} уже работает в другом отделе!");
+                return false;
+            }
             foreach (Employee emp in employees)
             {
                 if (emp.ID == employee.ID)
@@ -27,6 +33,7 @@ namespace LAB08_1
                 }
             }
             employees.Add(employee);
+            employee.IsEmployed = true;
             return true;
         }
         public bool RemoveEmployee(int id)
@@ -35,6 +42,7 @@ namespace LAB08_1
             {
                 if (employees[i].ID == id)
                 {
+                    employees[i].IsEmployed = false;
                     employees.RemoveAt(i);
                     return true;
                 }
@@ -44,7 +52,16 @@ namespace LAB08_1
 
         public int CountEmployees()
         {
-            return employees.Count;
+            int count = 0;
+
+            foreach (Employee emp in employees)
+            {
+                count++;
+            }
+
+
+
+            return count;
         }
         public int CountWorkers()
         {

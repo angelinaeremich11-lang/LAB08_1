@@ -11,6 +11,7 @@ namespace LAB08_1
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateOfHiring { get; set; }
+        public bool IsEmployed { get; set; } = false;
         public int Age => DateTime.Now.Year - DateOfBirth.Year;
         public int Expierience => DateTime.Now.Year - DateOfHiring.Year;
         public static decimal StartSalary => 1500m;
